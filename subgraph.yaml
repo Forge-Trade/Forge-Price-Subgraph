@@ -3,32 +3,12 @@ schema:
   file: ./schema.graphql
 dataSources:
   - kind: ethereum
-    name: UniswapV2Factory
-    network: mainnet
-    source:
-      address: "0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f"
-      abi: UniswapV2Factory
-      startBlock: 10000835
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      entities:
-        - PairCreated
-      abis:
-        - name: UniswapV2Factory
-          file: ./abis/uniswap-v2-factory.json
-      eventHandlers:
-        - event: PairCreated(indexed address,indexed address,address,uint256)
-          handler: handlePairCreatedV2
-      file: ./src/uniswap-v2-factory.ts
-  - kind: ethereum
     name: UniswapV3Factory
-    network: mainnet
+    network: evmos
     source:
-      address: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
+      address: "0xf544365e7065966f190155F629cE0182fC68Eaa2"
       abi: UniswapV3Factory
-      startBlock: 12369621
+      startBlock: 12367456
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -44,26 +24,8 @@ dataSources:
       file: ./src/uniswap-v3-factory.ts
 templates:
   - kind: ethereum/contract
-    name: UniswapV2Pair
-    network: mainnet
-    source:
-      abi: UniswapV2Pair
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      file: ./src/uniswap-v2-pair.ts
-      entities:
-        - UniswapV2Pair
-      abis:
-        - name: UniswapV2Pair
-          file: ./abis/uniswap-v2-pair.json
-      eventHandlers:
-        - event: Swap(indexed address,uint256,uint256,uint256,uint256,indexed address)
-          handler: handleSwapV2
-  - kind: ethereum/contract
     name: UniswapV3Pair
-    network: mainnet
+    network: evmos
     source:
       abi: UniswapV3Pair
     mapping:
